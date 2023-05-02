@@ -1,7 +1,5 @@
 FROM alpine:3
 
-ENV SSH_PUBLIC_KEY SSH_PUBLIC_KEY
-
 RUN apk add --no-cache \
   openssh-server \
   runuser \
