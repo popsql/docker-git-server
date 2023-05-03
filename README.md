@@ -2,7 +2,10 @@
 
 Runs a git server meant to be used in a [test container](https://www.testcontainers.org/).
 
-Pass the public key in an environment variable named `SSH_PUBLIC_KEY` and mount a volume containing the files for the initial commit into `/root/repoFiles/`
+When the container starts, it will create a repository at `/home/git/repo`. If a volume is mounted to `/root/repoFiles`, then that will be used to
+seed the repository with an initial commit.
+
+To set a public key for the repository to use, set the environment variable `SSH_PUBLIC_KEY` to the key value.
 
 Build the container with a command like this:
 
