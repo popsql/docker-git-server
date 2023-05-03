@@ -16,7 +16,7 @@ cd /home/git
 su git -c "git init  --bare -b main repo"
 
 # use the repo files (if any) to make an initial commit in the repo
-if [ "$(ls -A /root/repoFiles/)" ]; then
+if [ -d /root/repoFiles ]; then
   echo 'creating initial commit...'
   su git -c "git clone repo tmp"
   cp -rT /root/repoFiles tmp
@@ -33,7 +33,5 @@ fi
 
 echo 'starting ssh server...'
 # -D flag avoids executing sshd as a daemon
-/usr/sbin/sshd -D &
-
-echo 'git server ready'
-wait $!
+# -e log to stderr so we can wait for the ssh server to be running
+/usr/sbin/sshd -D -e
